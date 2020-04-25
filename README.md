@@ -10,7 +10,7 @@ To install the proxy, download or clone the repository:
 ```shell
 git clone https://github.com/MCPI-Devs/proxy.git
 ```
-There are no aditional requiriments.
+There are no aditional requirements.
 
 ## Usage
 Run the `proxy.py` file in the root of the repo as
