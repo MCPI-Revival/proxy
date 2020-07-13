@@ -20,7 +20,7 @@ proxy.py src_addr [src_port [dst_port]]
 Where `src_addr` is a valid internet address and `src_port` and `dst_port` are valid internet ports.
 
 ## Licensing
-All the code of this project is licensed under the [GNU General Public License version 2.0](https://github.com/Alvarito050506/MCPIL/blob/master/LICENSE) (GPL-2.0).
+All the code of this project is licensed under the [GNU General Public License version 2.0](https://github.com/MCPI-Devs/proxy/blob/master/LICENSE) (GPL-2.0).
 
 All the documentation of this project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) (CC BY-SA 4.0) license.
 
