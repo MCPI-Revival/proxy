@@ -70,9 +70,9 @@ if __name__ == '__main__':
 	proxy = Proxy();
 	proxy.set_option("src_addr", args[1]);
 	if len(args) > 2:
-		proxy.set_option("src_port", args[2]);
+		proxy.set_option("src_port", int(args[2]));
 	if len(args) > 3:
-		proxy.set_option("dst_port", args[3]);
+		proxy.set_option("dst_port", int(args[3]));
 	options = proxy.get_options();
 	print(options["src_addr"] + ":" + str(options["src_port"]) + " --> 0.0.0.0:" + str(options["dst_port"]));
 	try:
