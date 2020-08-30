@@ -6,16 +6,20 @@ A Minecraft Pi Proxy that allow to players to connect to remote servers.
 To use the proxy you need to have `Python >= 3.7.x` pre-installed.
 
 ### Installation
-To install the proxy, download or clone the repository:
+Download and install the proxy from from the Packagecloud Debian repository:
 ```shell
-git clone https://github.com/MCPI-Devs/proxy.git
+# If you didn't add the repository yet
+curl -s https://packagecloud.io/install/repositories/Alvarito050506/mcpi-devs/script.deb.sh | sudo bash
+
+# Now the actual installation
+sudo apt-get install mcpi-proxy
 ```
-There are no aditional requirements.
+
 
 ## Usage
-Run the `proxy.py` file in the root of the repo as
+Run the `mcpip` command as:
 ```
-proxy.py src_addr [src_port [dst_port]]
+mcpip src_addr [src_port [dst_port]]
 ```
 Where `src_addr` is a valid internet address and `src_port` and `dst_port` are valid internet ports.
 
