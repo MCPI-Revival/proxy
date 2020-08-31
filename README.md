@@ -15,13 +15,33 @@ curl -s https://packagecloud.io/install/repositories/Alvarito050506/mcpi-devs/sc
 sudo apt-get install mcpi-proxy
 ```
 
-
 ## Usage
 Run the `mcpip` command as:
 ```
 mcpip src_addr [src_port [dst_port]]
 ```
 Where `src_addr` is a valid internet address and `src_port` and `dst_port` are valid internet ports.
+
+## API
+The proxy exposes the following methods through the `Proxy` class in the `mcpip` Python 3 module:
+
+### `def __init__()`
+Initializes the class.
+
+### `set_option(name, value):`
+Sets the `name` option to `value`. Avaiable options:
+ + `"src_addr"`: The source address.
+   `"src_port"`: The source port.
+ + `"dst_port"`: The destination port.
+
+### `def get_options()`
+Returns the options as a dictionary.
+
+### `def run()`
+Runs the proxy.
+
+### `def stop()`
+Stops the proxy.
 
 ## Licensing
 All the code of this project is licensed under the [GNU General Public License version 2.0](https://github.com/MCPI-Devs/proxy/blob/master/LICENSE) (GPL-2.0).

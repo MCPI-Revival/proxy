@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-#  __init__.py
+#  proxy.py
 #  
 #  Copyright 2020 Alvarito050506 <donfrutosgomez@gmail.com>
 #  
@@ -31,6 +31,7 @@ class Proxy:
 			"src_port": 19132,
 			"dst_port": 19133
 		};
+		self.__running = False;
 
 	def set_option(self, name, value):
 		if name in self.__options:
@@ -46,10 +47,11 @@ class Proxy:
 		dst_addr = ("0.0.0.0", self.__options["dst_port"]);
 		src_addr = (self.__options["src_addr"], self.__options["src_port"]);
 		client_addr = None;
+		self.__running = True;
 		self.__socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP);
 		self.__socket.bind(dst_addr);
 
-		while True:
+		while self.__running:
 			data, addr = self.__socket.recvfrom(4096);
 			if addr == src_addr:
 				self.__socket.sendto(data, client_addr);
@@ -57,6 +59,10 @@ class Proxy:
 				if client_addr is None or client_addr[0] == addr[0]:
 					client_addr = addr;
 					self.__socket.sendto(data, src_addr);
+		return 0;
+
+	def stop(self):
+		self.__running = False;
 		return 0;
 
 if __name__ == '__main__':
@@ -78,5 +84,6 @@ if __name__ == '__main__':
 	try:
 		proxy.run();
 	except KeyboardInterrupt:
+		proxy.stop();
 		print("");
 		sys.exit(0);
