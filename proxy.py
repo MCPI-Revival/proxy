@@ -74,7 +74,7 @@ if __name__ == '__main__':
 		sys.exit(1);
 
 	proxy = Proxy();
-	proxy.set_option("src_addr", args[1]);
+	proxy.set_option("src_addr", socket.gethostbyname_ex(args[1])[2][0]);
 	if len(args) > 2:
 		proxy.set_option("src_port", int(args[2]));
 	if len(args) > 3:
