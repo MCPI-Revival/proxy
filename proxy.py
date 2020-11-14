@@ -45,7 +45,11 @@ class Proxy:
 
 	def run(self):
 		dst_addr = ("0.0.0.0", self.__options["dst_port"]);
-		src_addr = (self.__options["src_addr"], self.__options["src_port"]);
+		try:
+			proc_addr = socket.gethostbyname_ex(self.__options["src_addr"])[2][0]
+		except socker.gaierror:
+			print("Error: Invalid address.");
+		src_addr = (proc_addr, self.__options["src_port"]);
 		client_addr = None;
 		self.__running = True;
 		self.__socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP);
@@ -74,7 +78,7 @@ if __name__ == '__main__':
 		sys.exit(1);
 
 	proxy = Proxy();
-	proxy.set_option("src_addr", socket.gethostbyname_ex(args[1])[2][0]);
+	proxy.set_option("src_addr", args[1]);
 	if len(args) > 2:
 		proxy.set_option("src_port", int(args[2]));
 	if len(args) > 3:
