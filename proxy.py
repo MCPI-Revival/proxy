@@ -47,7 +47,7 @@ class Proxy:
 		dst_addr = ("0.0.0.0", self.__options["dst_port"]);
 		try:
 			proc_addr = socket.gethostbyname_ex(self.__options["src_addr"])[2][0]
-		except socker.gaierror:
+		except socket.gaierror:
 			print("Error: Invalid address.");
 		src_addr = (proc_addr, self.__options["src_port"]);
 		client_addr = None;
