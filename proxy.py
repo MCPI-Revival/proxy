@@ -23,6 +23,7 @@
 
 import sys
 import socket
+import threading
 
 class Proxy:
 	def __init__(self):
@@ -31,7 +32,8 @@ class Proxy:
 			"src_port": 19132,
 			"dst_port": 19133
 		};
-		self.__running = False;
+		self.__running_lock = threading.Lock();
+		self.__running = 0;
 
 	def set_option(self, name, value):
 		if name in self.__options:
@@ -52,22 +54,42 @@ class Proxy:
 			return 1;
 		src_addr = (proc_addr, self.__options["src_port"]);
 		client_addr = None;
-		self.__running = True;
+
+		self.__running_lock.acquire();
+		self.__running += 1;
+		self.__running_lock.release();
+
 		self.__socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP);
 		self.__socket.bind(dst_addr);
+		self.__socket.setblocking(False);
 
-		while self.__running:
-			data, addr = self.__socket.recvfrom(4096);
-			if addr == src_addr:
-				self.__socket.sendto(data, client_addr);
-			else:
-				if client_addr is None or client_addr[0] == addr[0]:
-					client_addr = addr;
-					self.__socket.sendto(data, src_addr);
+		while True:
+			self.__running_lock.acquire();
+			condition = self.__running < 1;
+			self.__running_lock.release();
+			if condition:
+				# End Loop
+				break;
+
+			try:
+				data, addr = self.__socket.recvfrom(4096);
+				if addr == src_addr:
+					self.__socket.sendto(data, client_addr);
+				else:
+					if client_addr is None or client_addr[0] == addr[0]:
+						client_addr = addr;
+						self.__socket.sendto(data, src_addr);
+			except:
+				# No Data Available
+				pass
+
+		self.__socket.close();
 		return 0;
 
 	def stop(self):
-		self.__running = False;
+		self.__running_lock.acquire();
+		self.__running -= 1;
+		self.__running_lock.release();
 		return 0;
 
 if __name__ == '__main__':
