@@ -49,6 +49,7 @@ class Proxy:
 			proc_addr = socket.gethostbyname_ex(self.__options["src_addr"])[2][0]
 		except socket.gaierror:
 			print("Error: Invalid address.");
+			return 1;
 		src_addr = (proc_addr, self.__options["src_port"]);
 		client_addr = None;
 		self.__running = True;
