@@ -64,6 +64,7 @@ class Proxy:
 				if client_addr is None or client_addr[0] == addr[0]:
 					client_addr = addr;
 					self.__socket.sendto(data, src_addr);
+		self.__socket.close();
 		return 0;
 
 	def stop(self):
