@@ -3,7 +3,7 @@
 #
 #  proxy.py
 #  
-#  Copyright 2020 Alvarito050506 <donfrutosgomez@gmail.com>
+#  Copyright 2021 Alvarito050506 <donfrutosgomez@gmail.com>
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
