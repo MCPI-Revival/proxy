@@ -9,9 +9,8 @@ To use the proxy you need to have `Python >= 3.7.x` pre-installed.
 Download and install the proxy from releases:
 ```shell
 wget https://github.com/MCPI-Revival/proxy/releases/download/0.3.2/mcpi-proxy_0.3.2.deb
-
-# Now the actual installation
 sudo apt-get install ./mcpi-proxy_0.3.2.deb
+sudo rm mcpi-proxy_0.3.2.deb
 ```
 
 ## Usage
