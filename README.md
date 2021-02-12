@@ -1,5 +1,5 @@
 # Proxy
-A Minecraft Pi Proxy that allow to players to connect to remote servers.
+A Proxy That Allows Players To Connect To Remote Servers
 
 ## Getting started
 ### Prerequisites
