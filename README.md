@@ -6,6 +6,7 @@ A Proxy That Allows Players To Connect To Remote Servers
 To use the proxy you need to have `Python >= 3.7.x` pre-installed.
 
 ### Installation
+#### For debian based systems like the Raspberry Pi OS:
 Download and install the proxy from releases:
 ```shell
 wget https://github.com/MCPI-Revival/proxy/releases/download/0.3.3/mcpi-proxy_0.3.3.deb
@@ -13,6 +14,13 @@ sudo apt-get install ./mcpi-proxy_0.3.3.deb
 sudo rm mcpi-proxy_0.3.3.deb
 ```
 
+#### For Fedora/RedHat/CentOS based OSes
+```shell
+wget https://github.com/MCPI-Revival/proxy/releases/download/0.3.3/mcpi-proxy_0.3.3.deb
+yum -y install  alien   
+alien -r mcpi-proxy_0.3.3.deb generated   
+rpm -ivh --nodeps --force mcpi-proxy-0.3.3.noarch.rpm  
+```
 ## Usage
 Run the `mcpip` command as:
 ```
