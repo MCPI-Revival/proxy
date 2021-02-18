@@ -8,17 +8,17 @@ To use the proxy you need to have `Python >= 3.7.x` pre-installed.
 ### Installation
 Download and install the proxy from releases:
 ```shell
-wget https://github.com/MCPI-Revival/proxy/releases/download/0.3.2/mcpi-proxy_0.3.2.deb
-sudo apt-get install ./mcpi-proxy_0.3.2.deb
-sudo rm mcpi-proxy_0.3.2.deb
+wget https://github.com/MCPI-Revival/proxy/releases/download/0.3.3/mcpi-proxy_0.3.3.deb
+sudo apt-get install ./mcpi-proxy_0.3.3.deb
+sudo rm mcpi-proxy_0.3.3.deb
 ```
 
 ## Usage
 Run the `mcpip` command as:
 ```
-mcpip src_addr [src_port [dst_port]]
+mcpip server_addr server_port scr_port
 ```
-Where `src_addr` is a valid internet address and `src_port` and `dst_port` are valid internet ports.
+Replace server_addr with the server IP. If the server uses a port different from the default one (19132), replace server_port with the different server port. If you want to use a specific port on your device to connect to the server (eg. you have another proxy instance running), replace scr_port with the port you want it to originate from.
 
 ## API
 The proxy exposes the following methods through the `Proxy` class in the `mcpip` Python 3 module:
