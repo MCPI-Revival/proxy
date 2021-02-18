@@ -46,6 +46,10 @@ class Proxy:
 		return self.__options;
 
 	def run(self):
+		self.__running_lock.acquire();
+		self.__running += 1;
+		self.__running_lock.release();
+
 		dst_addr = ("0.0.0.0", self.__options["dst_port"]);
 		try:
 			proc_addr = socket.gethostbyname_ex(self.__options["src_addr"])[2][0]
@@ -54,10 +58,6 @@ class Proxy:
 			return 1;
 		src_addr = (proc_addr, self.__options["src_port"]);
 		client_addr = None;
-
-		self.__running_lock.acquire();
-		self.__running += 1;
-		self.__running_lock.release();
 
 		self.__socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP);
 		self.__socket.bind(dst_addr);
