@@ -30,7 +30,7 @@ class Proxy:
 		self.__options = {
 			"src_addr": None,
 			"src_port": 19132,
-			"dst_port": 19133
+			"dst_port": 19132
 		};
 		self.__running_lock = threading.Lock();
 		self.__running = 0;
@@ -79,7 +79,7 @@ class Proxy:
 					if client_addr is None or client_addr[0] == addr[0]:
 						client_addr = addr;
 						self.__socket.sendto(data, src_addr);
-			except:
+			except BlockingIOError:
 				# No Data Available
 				pass
 
